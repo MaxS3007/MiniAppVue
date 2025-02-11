@@ -21,6 +21,7 @@ async def cmd_start(client: AsyncClient, session, user_info):
         await UserDAO.add(session=session, values=values)
 
     greeting_message = get_greeting_text(user_info.get("first_name"))
+
     await bot_send_message(client, user_info["id"], greeting_message, main_kb)
 
 async def handler_back_home(client: AsyncClient, callback_query_id: int, chat_id: int):

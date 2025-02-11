@@ -42,7 +42,7 @@ async def lifespan(app: FastAPI):
     await set_webhook(client)
     await client.post(f"{settings.get_tg_api_url()}/setMyCommands",
                       data={"commands": json.dumps([{"command": "start", "description": "Главное меню"}])})
-    print("<=========== ")
+    #  print("<=========== ")
     await send_admin_msg(client, "Бот запущен!")
     yield
     logger.info("Завершение работы бота...")

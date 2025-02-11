@@ -1,5 +1,5 @@
 # универсальные методы бота (отправка сообщений, ответ на callback и т.д.)
-
+import json
 from datetime import datetime
 from httpx import AsyncClient
 from app.config import settings
@@ -7,8 +7,20 @@ from app.config import settings
 
 async def bot_send_message(client: AsyncClient, chat_id: int, text: str, kb: list | None = None):
     send_data = {"chat_id": chat_id, "text": text, "parse_mode": "HTML"}
+    # send_data_admin = {"chat_id": settings.ADMIN_IDS[0], "text": text, "parse_mode": "HTML"}
     if kb:
         send_data["reply_markup"] = {"inline_keyboard": kb}
+
+        # keyboard = {"inline_keyboard": [[{"text": "📅 Мои записи ADMIN", "callback_data": "booking"}],
+        #                                 [{"text": "🔖 Записаться", "web_app":{"url": "https://127.0.0.1:3000"}}],
+        #                                 [{"text": "ℹ️ О нас", "callback_data": "about_us"}]]}
+        #
+        # send_data_admin["reply_markup"] = json.dumps(keyboard)
+
+    # print(kb)
+    # print(chat_id)
+    # await client.post(f"{settings.get_tg_api_url()}/sendMessage", json=send_data_admin)
+                      #json={"chat_id": settings.ADMIN_IDS[0], "text": text, "parse_mode": "HTML"})
     await client.post(f"{settings.get_tg_api_url()}/sendMessage", json=send_data)
 
 
