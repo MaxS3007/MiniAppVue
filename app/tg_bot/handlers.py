@@ -54,7 +54,7 @@ async def handler_my_appointments_all(client: AsyncClient,
     for appointment in appointments:
         await bot_send_message(client, chat_id, format_appointment(appointment))
 
-    await bot_send_message(client, chat_id, "Это все ваши текущие записи.", main_kb)
+    await bot_send_message(client, chat_id, "Это все ваши текущие записи.", back_kb)
 
 
 
