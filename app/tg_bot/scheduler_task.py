@@ -3,6 +3,7 @@
 from loguru import logger
 from app.async_client import http_client_manager
 from app.config import scheduler
+from app.tg_bot.kbs import back_kb, main_kb, generate_kb_profile
 from app.tg_bot.methods import bot_send_message, format_appointment
 from datetime import datetime
 
@@ -10,7 +11,7 @@ async def send_user_noti(user_tg_id: int, appointment: dict):
     client = http_client_manager.get_client()
     text = format_appointment(appointment, start_text="❗ Напоминаем, что у вас назначена запись к доктору ❗")
     try:
-        await bot_send_message(client=client, chat_id=user_tg_id, text=text)
+        await bot_send_message(client=client, chat_id=user_tg_id, text=text, kb=back_kb)
     except Exception as e:
         logger.error(e)
 
