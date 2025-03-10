@@ -118,12 +118,13 @@ class BookingDAO(BaseDAO[Booking]):
             }
 
             # Названия дней недели на русском
-            week_days_rus = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
+            # week_days_rus = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
+            week_days_rus = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"]
 
             # Результат
             available_slots = []
 
-            for day_offset in range(6):
+            for day_offset in range(len(week_days_rus)):
                 current_date = start_of_week + timedelta(days=day_offset)
                 current_date_str = current_date.isoformat()
                 day_name_rus = week_days_rus[day_offset]
