@@ -136,7 +136,7 @@ class BookingDAO(BaseDAO[Booking]):
 
                         if current_date == datetime.now().date():
                             slot_time = datetime.strptime(time_str, "%H:%M").time()
-                            if slot_time <= datetime.now().time():
+                            if slot_time <= datetime.now(timezone.utc).time():
                                 is_available = False
 
                         if is_available:
