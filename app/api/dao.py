@@ -130,7 +130,7 @@ class BookingDAO(BaseDAO[Booking]):
 
                 # Если текущая дата меньше сегодняшней, слоты пустые
                 day_slots = []
-                if current_date >= datetime.now().date():
+                if current_date > datetime.now().date():
                     for time_str in working_hours:
                         is_available = (current_date_str, time_str) not in booked_slots
 
