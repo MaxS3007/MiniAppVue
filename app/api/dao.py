@@ -59,7 +59,7 @@ class BookingDAO(BaseDAO[Booking]):
         return data_list
 
     @classmethod
-    def generate_working_hours(cls, start_hour=10, end_hour=17, step_minutes=30) -> List[str]:
+    def generate_working_hours(cls, start_hour=10, end_hour=18, step_minutes=120) -> List[str]:
         """Генерирует список рабочих часов с заданным интервалом"""
         working_hours = []
         current_time = datetime.strptime(f"{start_hour}:00", "%H:%M")
