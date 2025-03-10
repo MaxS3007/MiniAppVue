@@ -35,7 +35,7 @@ async def handler_about_us(client: AsyncClient, callback_query_id: int, chat_id:
     await bot_send_message(client, chat_id, about_us_text, back_kb)
 
 async def handler_my_appointments(client: AsyncClient, callback_query_id: int, chat_id: int, session):
-    await call_answer(client, callback_query_id, "Ваши записи к врачам")
+    await call_answer(client, callback_query_id, "Ваши записи к специалистам")
     db_user_id = await UserDAO.get_user_id(session=session, telegram_id=chat_id)
     appointment_count = await BookingDAO.count_user_booking(session=session, user_id=db_user_id)
     message_text = get_booking_text(appointment_count)
@@ -48,7 +48,7 @@ async def handler_my_appointments_all(client: AsyncClient,
                                       chat_id: int,
                                       user_db_id: int,
                                       session):
-    await call_answer(client, callback_query_id, "Ваши записи к врачам (подробно)")
+    await call_answer(client, callback_query_id, "Ваши записи к специалистам (подробно)")
     appointments = await BookingDAO.get_user_bookings_with_doctor_info(session=session, user_id=user_db_id)
 
     for appointment in appointments:

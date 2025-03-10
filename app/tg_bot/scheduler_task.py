@@ -9,7 +9,7 @@ from datetime import datetime
 
 async def send_user_noti(user_tg_id: int, appointment: dict):
     client = http_client_manager.get_client()
-    text = format_appointment(appointment, start_text="❗ Напоминаем, что у вас назначена запись к доктору ❗")
+    text = format_appointment(appointment, start_text="❗ Напоминаем, что у вас назначена запись на консультацию ❗")
     try:
         await bot_send_message(client=client, chat_id=user_tg_id, text=text, kb=back_kb)
     except Exception as e:
